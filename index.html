@@ -1,0 +1,1934 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Red Industrial Inteligente - Producción Automatizada de Estibas</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- CountUp.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/countup.js/2.8.0/countUp.umd.min.js"></script>
+    
+    <style>
+        :root {
+            --primary: #1A5490;
+            --secondary: #E67E22;
+            --success: #27AE60;
+            --danger: #E74C3C;
+            --bg: #F8F9FA;
+            --dark: #2C3E50;
+            --light: #ECF0F1;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--dark);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+        }
+        
+        /* Navigation */
+        nav {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        
+        .nav-links a:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, #0d3a66 100%);
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 3rem auto 0;
+        }
+        
+        .stat-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .stat-card .number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .stat-card .label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+        }
+        
+        /* Section Styles */
+        .section {
+            padding: 4rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+        
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+        }
+        
+        .card-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        /* Network Diagram */
+        .network-diagram {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin: 2rem 0;
+            overflow-x: auto;
+        }
+        
+        .network-diagram svg {
+            width: 100%;
+            min-height: 600px;
+        }
+        
+        /* Network diagram is now static - no interactivity */
+        
+        /* Process Simulation */
+        .process-simulation {
+            background: white;
+            border-radius: 10px;
+            padding: 3rem;
+            margin: 2rem 0;
+        }
+        
+        .process-stages {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 2rem 0;
+            position: relative;
+        }
+        
+        .process-stage {
+            text-align: center;
+            flex: 1;
+            position: relative;
+        }
+        
+        .stage-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 1rem;
+            transition: all 0.3s;
+        }
+        
+        .process-stage.active .stage-icon {
+            background: var(--secondary);
+            transform: scale(1.2);
+        }
+        
+        .stage-arrow {
+            position: absolute;
+            right: -50px;
+            top: 40px;
+            font-size: 2rem;
+            color: var(--primary);
+        }
+        
+        .production-counter {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .counter-display {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary);
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .tab-btn {
+            padding: 0.8rem 1.5rem;
+            background: white;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+        
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        /* Comparison Tabs */
+        .comparison-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .comparison-tab-content {
+            display: none;
+        }
+        
+        .comparison-tab-content.active {
+            display: block;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        
+        /* Cost Table */
+        .cost-table-container {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            overflow-x: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background: var(--primary);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        th:hover {
+            background: #0d3a66;
+        }
+        
+        tr:hover {
+            background: #f5f5f5;
+        }
+        
+        .cost-total {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-top: 1rem;
+        }
+        
+        /* Charts */
+        .chart-container {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+            height: 400px;
+            position: relative;
+            min-height: 400px;
+        }
+        
+        .chart-container canvas {
+            max-height: 100% !important;
+            width: 100% !important;
+            display: block;
+        }
+        
+        .chart-container {
+            display: block !important;
+            visibility: visible !important;
+        }
+        
+        /* Modals */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(5px);
+        }
+        
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: modalSlideIn 0.3s;
+        }
+        
+        @keyframes modalSlideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #666;
+        }
+        
+        .modal-close:hover {
+            color: var(--danger);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        
+        /* Buttons */
+        .btn {
+            padding: 0.8rem 2rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn:hover {
+            background: #0d3a66;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .btn-secondary {
+            background: var(--secondary);
+        }
+        
+        .btn-secondary:hover {
+            background: #d35400;
+        }
+        
+        /* Cybersecurity Zones */
+        .zones-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .zone-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            border-left: 5px solid var(--primary);
+        }
+        
+        .zone-card.zone-0 { border-left-color: var(--danger); }
+        .zone-card.zone-1 { border-left-color: var(--secondary); }
+        .zone-card.zone-2 { border-left-color: var(--primary); }
+        .zone-card.zone-3 { border-left-color: var(--success); }
+        
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+        
+        .timeline-item {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            margin-left: 2rem;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -12px;
+            top: 1.5rem;
+            width: 20px;
+            height: 20px;
+            background: var(--primary);
+            border-radius: 50%;
+        }
+        
+        /* Filter */
+        .filter-container {
+            margin: 2rem 0;
+        }
+        
+        .filter-select {
+            padding: 0.8rem;
+            border: 2px solid var(--primary);
+            border-radius: 5px;
+            font-size: 1rem;
+            width: 250px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .process-stages {
+                flex-direction: column;
+            }
+            
+            .stage-arrow {
+                transform: rotate(90deg);
+                right: auto;
+                top: auto;
+                bottom: -30px;
+            }
+        }
+        
+        /* Animations */
+        [data-aos] {
+            pointer-events: none;
+        }
+        
+        .aos-animate {
+            pointer-events: auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="nav-links">
+                <a href="#resumen">Resumen Ejecutivo</a>
+                <a href="#arquitectura">Arquitectura de Red</a>
+                <a href="#proceso">Proceso Productivo</a>
+                <a href="#dispositivos">Dispositivos</a>
+                <a href="#protocolos">Protocolos</a>
+                <a href="#seguridad">Ciberseguridad</a>
+                <a href="#analisis">Análisis Técnico</a>
+                <a href="#comparativa">Comparativa</a>
+                <a href="#costos">Costos</a>
+                <a href="#mantenimiento">Mantenimiento</a>
+                <a href="#roadmap">Roadmap</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <h1 data-aos="fade-up">Red Industrial Inteligente</h1>
+        <p data-aos="fade-up" data-aos-delay="100">Producción Automatizada de Estibas</p>
+        <p data-aos="fade-up" data-aos-delay="200" style="font-size: 1rem; opacity: 0.9;">Diseño Rockwell Automation con Ethernet/IP</p>
+        
+        <div class="stats-grid">
+            <div class="stat-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="number" id="stat-production">400</div>
+                <div class="label">Estibas/día</div>
+            </div>
+            <div class="stat-card" data-aos="fade-up" data-aos-delay="400">
+                <div class="number" id="stat-availability">99.5%</div>
+                <div class="label">Disponibilidad</div>
+            </div>
+            <div class="stat-card" data-aos="fade-up" data-aos-delay="500">
+                <div class="number" id="stat-roi">18</div>
+                <div class="label">Meses ROI</div>
+            </div>
+            <div class="stat-card" data-aos="fade-up" data-aos-delay="600">
+                <div class="number" id="stat-investment">$600M</div>
+                <div class="label">Inversión Total COP</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resumen Ejecutivo -->
+    <section class="section" id="resumen">
+        <h2 class="section-title" data-aos="fade-up">Resumen Ejecutivo</h2>
+        <p class="section-subtitle" data-aos="fade-up">Sistema de red industrial para planta automatizada de producción de estibas tipo Europallet</p>
+        
+        <div class="cards-grid">
+            <div class="card" data-aos="fade-up" data-aos-delay="100">
+                <div class="card-icon"><i class="fas fa-industry"></i></div>
+                <h3>Producción</h3>
+                <p><strong>Capacidad:</strong> 400 estibas/día</p>
+                <p><strong>Líneas:</strong> 2 paralelas</p>
+                <p><strong>Área:</strong> 100m²</p>
+                <p><strong>Proceso:</strong> Ensamblaje → Clavado → Inspección → Apilado</p>
+            </div>
+            
+            <div class="card" data-aos="fade-up" data-aos-delay="200">
+                <div class="card-icon"><i class="fas fa-network-wired"></i></div>
+                <h3>Control</h3>
+                <p><strong>PLCs:</strong> 3 ControlLogix Allen-Bradley</p>
+                <p><strong>Protocolo:</strong> Ethernet/IP</p>
+                <p><strong>Topología:</strong> Anillo DLR</p>
+                <p><strong>Recuperación:</strong> &lt; 3ms ante fallos</p>
+            </div>
+            
+            <div class="card" data-aos="fade-up" data-aos-delay="300">
+                <div class="card-icon"><i class="fas fa-chart-line"></i></div>
+                <h3>Supervisión</h3>
+                <p><strong>SCADA:</strong> FactoryTalk View SE</p>
+                <p><strong>HMI:</strong> 2 PanelView Plus 7</p>
+                <p><strong>Base de Datos:</strong> SQL Server</p>
+                <p><strong>Dashboard:</strong> Web en tiempo real</p>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 2rem;">
+            <a href="#arquitectura" class="btn">Ver Diagrama Completo</a>
+        </div>
+    </section>
+
+        <!-- Arquitectura de Red -->
+        <section class="section" id="arquitectura">
+            <h2 class="section-title" data-aos="fade-up">Arquitectura de Red</h2>
+            <p class="section-subtitle" data-aos="fade-up">Red industrial de 3 niveles con redundancia y seguridad</p>
+            
+            <div class="network-diagram" id="network-diagram" data-aos="fade-up" style="max-width: 1400px; margin: 2rem auto;">
+                <svg viewBox="0 0 1400 900" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto;">
+                    <!-- Level 3: Supervision -->
+                    <rect x="100" y="40" width="1200" height="180" fill="#E3F2FD" stroke="#1A5490" stroke-width="4" rx="10"/>
+                    <text x="700" y="75" text-anchor="middle" font-size="24" font-weight="bold" fill="#1A5490">NIVEL 3 - SUPERVISIÓN</text>
+                    
+                    <!-- Servers - Better organized -->
+                    <g>
+                        <rect x="180" y="100" width="140" height="100" fill="#1A5490" rx="8" stroke="#0d3a66" stroke-width="2"/>
+                        <text x="250" y="130" text-anchor="middle" fill="white" font-size="13" font-weight="bold">Servidor SCADA</text>
+                        <text x="250" y="150" text-anchor="middle" fill="white" font-size="11">FactoryTalk View SE</text>
+                        <text x="250" y="170" text-anchor="middle" fill="#FFD700" font-size="10">192.168.20.10</text>
+                        <text x="250" y="185" text-anchor="middle" fill="#B0BEC5" font-size="9">VLAN 20</text>
+                    </g>
+                    
+                    <g>
+                        <rect x="380" y="100" width="140" height="100" fill="#1A5490" rx="8" stroke="#0d3a66" stroke-width="2"/>
+                        <text x="450" y="130" text-anchor="middle" fill="white" font-size="13" font-weight="bold">Servidor BD</text>
+                        <text x="450" y="150" text-anchor="middle" fill="white" font-size="11">SQL Server</text>
+                        <text x="450" y="170" text-anchor="middle" fill="#FFD700" font-size="10">192.168.20.11</text>
+                        <text x="450" y="185" text-anchor="middle" fill="#B0BEC5" font-size="9">VLAN 20</text>
+                    </g>
+                    
+                    <g>
+                        <rect x="580" y="100" width="140" height="100" fill="#1A5490" rx="8" stroke="#0d3a66" stroke-width="2"/>
+                        <text x="650" y="130" text-anchor="middle" fill="white" font-size="13" font-weight="bold">Estación Ingeniería</text>
+                        <text x="650" y="150" text-anchor="middle" fill="white" font-size="11">Studio 5000</text>
+                        <text x="650" y="170" text-anchor="middle" fill="#FFD700" font-size="10">192.168.20.12</text>
+                        <text x="650" y="185" text-anchor="middle" fill="#B0BEC5" font-size="9">VLAN 20</text>
+                    </g>
+                    
+                    <g>
+                        <rect x="780" y="100" width="140" height="100" fill="#1A5490" rx="8" stroke="#0d3a66" stroke-width="2"/>
+                        <text x="850" y="130" text-anchor="middle" fill="white" font-size="13" font-weight="bold">Dashboard Web</text>
+                        <text x="850" y="150" text-anchor="middle" fill="white" font-size="11">Tiempo Real</text>
+                        <text x="850" y="170" text-anchor="middle" fill="#FFD700" font-size="10">192.168.20.13</text>
+                        <text x="850" y="185" text-anchor="middle" fill="#B0BEC5" font-size="9">VLAN 20</text>
+                    </g>
+                    
+                    <!-- Firewall -->
+                    <g>
+                        <rect x="1080" y="100" width="140" height="100" fill="#E74C3C" rx="8" stroke="#C0392B" stroke-width="2"/>
+                        <text x="1150" y="130" text-anchor="middle" fill="white" font-size="13" font-weight="bold">Firewall</text>
+                        <text x="1150" y="150" text-anchor="middle" fill="white" font-size="11">Stratix 5800</text>
+                        <text x="1150" y="170" text-anchor="middle" fill="#FFD700" font-size="10">DMZ</text>
+                        <text x="1150" y="185" text-anchor="middle" fill="#B0BEC5" font-size="9">Zona 0</text>
+                    </g>
+                    
+                    <!-- Connections from Level 3 to Level 2 -->
+                    <line x1="250" y1="200" x2="250" y2="280" stroke="#666" stroke-width="3"/>
+                    <line x1="450" y1="200" x2="450" y2="280" stroke="#666" stroke-width="3"/>
+                    <line x1="650" y1="200" x2="650" y2="280" stroke="#666" stroke-width="3"/>
+                    <line x1="850" y1="200" x2="850" y2="280" stroke="#666" stroke-width="3"/>
+                    
+                    <!-- Level 2: Control -->
+                    <rect x="100" y="280" width="1200" height="240" fill="#FFF3E0" stroke="#E67E22" stroke-width="4" rx="10"/>
+                    <text x="700" y="315" text-anchor="middle" font-size="24" font-weight="bold" fill="#E67E22">NIVEL 2 - CONTROL (Topología Anillo DLR)</text>
+                    
+                    <!-- HMI Línea 1 - Separado a la izquierda -->
+                    <g>
+                        <rect x="150" y="340" width="110" height="80" fill="#9B59B6" rx="8" stroke="#8E44AD" stroke-width="2"/>
+                        <text x="205" y="365" text-anchor="middle" fill="white" font-size="11" font-weight="bold">HMI Línea 1</text>
+                        <text x="205" y="385" text-anchor="middle" fill="white" font-size="10">PanelView Plus 7</text>
+                        <text x="205" y="400" text-anchor="middle" fill="#FFD700" font-size="9">192.168.10.2</text>
+                        <text x="205" y="415" text-anchor="middle" fill="#B0BEC5" font-size="9">VLAN 10</text>
+                    </g>
+                    
+                    <!-- Switch 1 - Después del HMI 1 -->
+                    <g>
+                        <rect x="300" y="350" width="120" height="90" fill="#E67E22" rx="8" stroke="#D35400" stroke-width="2"/>
+                        <text x="360" y="375" text-anchor="middle" fill="white" font-size="12" font-weight="bold">Switch 1</text>
+                        <text x="360" y="395" text-anchor="middle" fill="white" font-size="10">Stratix 5700</text>
+                        <text x="360" y="415" text-anchor="middle" fill="#FFD700" font-size="9">192.168.20.1</text>
+                        <text x="360" y="430" text-anchor="middle" fill="#B0BEC5" font-size="9">L3 DLR</text>
+                    </g>
+                    
+                    <!-- PLC Central - Entre Switch 1 y Switch 2 -->
+                    <g>
+                        <rect x="480" y="340" width="110" height="80" fill="#27AE60" rx="8" stroke="#229954" stroke-width="2"/>
+                        <text x="535" y="365" text-anchor="middle" fill="white" font-size="11" font-weight="bold">PLC Central</text>
+                        <text x="535" y="385" text-anchor="middle" fill="white" font-size="10">CompactLogix 5380</text>
+                        <text x="535" y="400" text-anchor="middle" fill="#FFD700" font-size="9">192.168.10.1</text>
+                        <text x="535" y="415" text-anchor="middle" fill="#B0BEC5" font-size="9">VLAN 10</text>
+                    </g>
+                    
+                    <!-- Switch 2 - Después del PLC -->
+                    <g>
+                        <rect x="640" y="350" width="120" height="90" fill="#E67E22" rx="8" stroke="#D35400" stroke-width="2"/>
+                        <text x="700" y="375" text-anchor="middle" fill="white" font-size="12" font-weight="bold">Switch 2</text>
+                        <text x="700" y="395" text-anchor="middle" fill="white" font-size="10">Stratix 5700</text>
+                        <text x="700" y="415" text-anchor="middle" fill="#FFD700" font-size="9">192.168.20.2</text>
+                        <text x="700" y="430" text-anchor="middle" fill="#B0BEC5" font-size="9">L3 DLR</text>
+                    </g>
+                    
+                    <!-- Switch 3 - Antes del HMI 2 -->
+                    <g>
+                        <rect x="800" y="350" width="120" height="90" fill="#E67E22" rx="8" stroke="#D35400" stroke-width="2"/>
+                        <text x="860" y="375" text-anchor="middle" fill="white" font-size="12" font-weight="bold">Switch 3</text>
+                        <text x="860" y="395" text-anchor="middle" fill="white" font-size="10">Stratix 5700</text>
+                        <text x="860" y="415" text-anchor="middle" fill="#FFD700" font-size="9">192.168.20.3</text>
+                        <text x="860" y="430" text-anchor="middle" fill="#B0BEC5" font-size="9">L3 DLR</text>
+                    </g>
+                    
+                    <!-- HMI Línea 2 - Separado a la derecha -->
+                    <g>
+                        <rect x="970" y="340" width="110" height="80" fill="#9B59B6" rx="8" stroke="#8E44AD" stroke-width="2"/>
+                        <text x="1025" y="365" text-anchor="middle" fill="white" font-size="11" font-weight="bold">HMI Línea 2</text>
+                        <text x="1025" y="385" text-anchor="middle" fill="white" font-size="10">PanelView Plus 7</text>
+                        <text x="1025" y="400" text-anchor="middle" fill="#FFD700" font-size="9">192.168.10.3</text>
+                        <text x="1025" y="415" text-anchor="middle" fill="#B0BEC5" font-size="9">VLAN 10</text>
+                    </g>
+                    
+                    <!-- Ring Connections - Anillo DLR conectando los 3 switches -->
+                    <line x1="420" y1="395" x2="640" y2="395" stroke="#E67E22" stroke-width="4" marker-end="url(#arrowhead)"/>
+                    <line x1="760" y1="395" x2="800" y2="395" stroke="#E67E22" stroke-width="4" marker-end="url(#arrowhead)"/>
+                    <line x1="860" y1="440" x2="860" y2="480" stroke="#E67E22" stroke-width="4"/>
+                    <line x1="860" y1="480" x2="360" y2="480" stroke="#E67E22" stroke-width="4"/>
+                    <line x1="360" y1="480" x2="360" y2="440" stroke="#E67E22" stroke-width="4"/>
+                    <text x="610" y="475" text-anchor="middle" font-size="11" fill="#E67E22" font-weight="bold">Anillo Redundante DLR (&lt; 3ms recuperación)</text>
+                    
+                    <!-- Arrow marker definition -->
+                    <defs>
+                        <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                            <polygon points="0 0, 10 3, 0 6" fill="#E67E22"/>
+                        </marker>
+                    </defs>
+                    
+                    <!-- Connections from HMIs and PLC to switches -->
+                    <line x1="260" y1="380" x2="300" y2="395" stroke="#9B59B6" stroke-width="2" stroke-dasharray="5,5"/>
+                    <line x1="590" y1="380" x2="640" y2="395" stroke="#27AE60" stroke-width="2" stroke-dasharray="5,5"/>
+                    <line x1="1080" y1="380" x2="800" y2="395" stroke="#9B59B6" stroke-width="2" stroke-dasharray="5,5"/>
+                    
+                    <!-- Connections from Level 2 to Level 1 -->
+                    <line x1="205" y1="420" x2="205" y2="580" stroke="#666" stroke-width="3"/>
+                    <line x1="1025" y1="420" x2="1025" y2="580" stroke="#666" stroke-width="3"/>
+                    
+                    <!-- Level 1: Field -->
+                    <rect x="100" y="580" width="1200" height="280" fill="#E8F5E9" stroke="#27AE60" stroke-width="4" rx="10"/>
+                    <text x="700" y="615" text-anchor="middle" font-size="24" font-weight="bold" fill="#27AE60">NIVEL 1 - CAMPO (DeviceNet/Ethernet/IP)</text>
+                    
+                    <!-- Field Switches -->
+                    <g>
+                        <rect x="150" y="650" width="120" height="80" fill="#27AE60" rx="8" stroke="#229954" stroke-width="2"/>
+                        <text x="210" y="675" text-anchor="middle" fill="white" font-size="11" font-weight="bold">Switch Campo 1</text>
+                        <text x="210" y="695" text-anchor="middle" fill="white" font-size="10">EN2T</text>
+                        <text x="210" y="715" text-anchor="middle" fill="#FFD700" font-size="9">No Administrado</text>
+                    </g>
+                    
+                    <g>
+                        <rect x="1180" y="650" width="120" height="80" fill="#27AE60" rx="8" stroke="#229954" stroke-width="2"/>
+                        <text x="1240" y="675" text-anchor="middle" fill="white" font-size="11" font-weight="bold">Switch Campo 2</text>
+                        <text x="1240" y="695" text-anchor="middle" fill="white" font-size="10">EN2T</text>
+                        <text x="1240" y="715" text-anchor="middle" fill="#FFD700" font-size="9">No Administrado</text>
+                    </g>
+                    
+                    <!-- Field PLCs -->
+                    <g>
+                        <rect x="320" y="660" width="100" height="70" fill="#27AE60" rx="8" stroke="#229954" stroke-width="2"/>
+                        <text x="370" y="685" text-anchor="middle" fill="white" font-size="11" font-weight="bold">PLC Línea 1</text>
+                        <text x="370" y="705" text-anchor="middle" fill="white" font-size="10">ControlLogix 5580</text>
+                        <text x="370" y="720" text-anchor="middle" fill="#FFD700" font-size="9">192.168.10.10</text>
+                    </g>
+                    
+                    <g>
+                        <rect x="980" y="660" width="100" height="70" fill="#27AE60" rx="8" stroke="#229954" stroke-width="2"/>
+                        <text x="1030" y="685" text-anchor="middle" fill="white" font-size="11" font-weight="bold">PLC Línea 2</text>
+                        <text x="1030" y="705" text-anchor="middle" fill="white" font-size="10">ControlLogix 5580</text>
+                        <text x="1030" y="720" text-anchor="middle" fill="#FFD700" font-size="9">192.168.10.20</text>
+                    </g>
+                    
+                    <!-- Sensors and Actuators - Better organized -->
+                    <g>
+                        <circle cx="480" cy="710" r="18" fill="#3498DB" stroke="#2980B9" stroke-width="2"/>
+                        <text x="480" y="715" text-anchor="middle" fill="white" font-size="10" font-weight="bold">S</text>
+                        <text x="480" y="745" text-anchor="middle" font-size="10" fill="#2C3E50" font-weight="bold">4 Sensores</text>
+                        <text x="480" y="760" text-anchor="middle" font-size="9" fill="#7F8C8D">Proximidad</text>
+                    </g>
+                    
+                    <g>
+                        <circle cx="570" cy="710" r="18" fill="#E74C3C" stroke="#C0392B" stroke-width="2"/>
+                        <text x="570" y="715" text-anchor="middle" fill="white" font-size="10" font-weight="bold">A</text>
+                        <text x="570" y="745" text-anchor="middle" font-size="10" fill="#2C3E50" font-weight="bold">3 Actuadores</text>
+                        <text x="570" y="760" text-anchor="middle" font-size="9" fill="#7F8C8D">Cilindros + Motores</text>
+                    </g>
+                    
+                    <g>
+                        <circle cx="850" cy="710" r="18" fill="#3498DB" stroke="#2980B9" stroke-width="2"/>
+                        <text x="850" y="715" text-anchor="middle" fill="white" font-size="10" font-weight="bold">S</text>
+                        <text x="850" y="745" text-anchor="middle" font-size="10" fill="#2C3E50" font-weight="bold">4 Sensores</text>
+                        <text x="850" y="760" text-anchor="middle" font-size="9" fill="#7F8C8D">Proximidad</text>
+                    </g>
+                    
+                    <g>
+                        <circle cx="940" cy="710" r="18" fill="#E74C3C" stroke="#C0392B" stroke-width="2"/>
+                        <text x="940" y="715" text-anchor="middle" fill="white" font-size="10" font-weight="bold">A</text>
+                        <text x="940" y="745" text-anchor="middle" font-size="10" fill="#2C3E50" font-weight="bold">3 Actuadores</text>
+                        <text x="940" y="760" text-anchor="middle" font-size="9" fill="#7F8C8D">Cilindros + Motores</text>
+                    </g>
+                    
+                    <!-- Connections from switches to devices -->
+                    <line x1="270" y1="690" x2="320" y2="695" stroke="#27AE60" stroke-width="2"/>
+                    <line x1="1240" y1="690" x2="980" y2="695" stroke="#27AE60" stroke-width="2"/>
+                    <line x1="370" y1="730" x2="480" y2="710" stroke="#3498DB" stroke-width="2" stroke-dasharray="3,3"/>
+                    <line x1="370" y1="730" x2="570" y2="710" stroke="#E74C3C" stroke-width="2" stroke-dasharray="3,3"/>
+                    <line x1="1030" y1="730" x2="850" y2="710" stroke="#3498DB" stroke-width="2" stroke-dasharray="3,3"/>
+                    <line x1="1030" y1="730" x2="940" y2="710" stroke="#E74C3C" stroke-width="2" stroke-dasharray="3,3"/>
+                </svg>
+            </div>
+        
+        <div class="cards-grid" style="margin-top: 2rem;">
+            <div class="card" data-aos="fade-up">
+                <h3><i class="fas fa-info-circle"></i> Especificaciones de Red</h3>
+                <p><strong>Ancho de Banda:</strong></p>
+                <ul>
+                    <li>Campo: 100 Mbps</li>
+                    <li>Control: 1 Gbps</li>
+                    <li>Supervisión: 1 Gbps</li>
+                </ul>
+                <p><strong>Latencias:</strong></p>
+                <ul>
+                    <li>Campo → PLC: &lt; 5ms</li>
+                    <li>PLC → SCADA: &lt; 15ms</li>
+                    <li>SCADA → Dashboard: &lt; 50ms</li>
+                </ul>
+            </div>
+            
+            <div class="card" data-aos="fade-up" data-aos-delay="100">
+                <h3><i class="fas fa-network-wired"></i> Topología DLR</h3>
+                <p><strong>Ventajas:</strong></p>
+                <ul>
+                    <li>✓ Redundancia automática</li>
+                    <li>✓ Recuperación &lt; 3ms</li>
+                    <li>✓ Protocolo nativo Rockwell</li>
+                    <li>✓ Escalable</li>
+                </ul>
+            </div>
+            
+            <div class="card" data-aos="fade-up" data-aos-delay="200">
+                <h3><i class="fas fa-shield-alt"></i> Seguridad</h3>
+                <p><strong>Medidas:</strong></p>
+                <ul>
+                    <li>VLANs separadas</li>
+                    <li>Firewall industrial</li>
+                    <li>Autenticación 802.1X</li>
+                    <li>IDS/IPS integrado</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Proceso Productivo -->
+    <section class="section" id="proceso">
+        <h2 class="section-title" data-aos="fade-up">Proceso Productivo</h2>
+        <p class="section-subtitle" data-aos="fade-up">Simulación de las 4 etapas de producción automatizada</p>
+        
+        <div class="process-simulation" data-aos="fade-up">
+            <div class="production-counter">
+                <div class="counter-display" id="production-counter">87</div>
+                <p>Estibas producidas hoy / 400 objetivo</p>
+                <button class="btn" onclick="toggleProcessSimulation()" id="process-btn" style="margin-top: 1rem;">
+                    <i class="fas fa-play"></i> Iniciar Simulación
+                </button>
+            </div>
+            
+            <div class="process-stages">
+                <div class="process-stage" id="stage-1">
+                    <div class="stage-icon"><i class="fas fa-cogs"></i></div>
+                    <h3>Ensamblaje</h3>
+                    <p>Sensores: 2 proximidad</p>
+                    <p>Actuadores: 3 cilindros</p>
+                </div>
+                
+                <div class="stage-arrow"><i class="fas fa-arrow-right"></i></div>
+                
+                <div class="process-stage" id="stage-2">
+                    <div class="stage-icon"><i class="fas fa-hammer"></i></div>
+                    <h3>Clavado</h3>
+                    <p>Sensores: 2 proximidad</p>
+                    <p>Actuadores: 2 clavadoras</p>
+                </div>
+                
+                <div class="stage-arrow"><i class="fas fa-arrow-right"></i></div>
+                
+                <div class="process-stage" id="stage-3">
+                    <div class="stage-icon"><i class="fas fa-check-circle"></i></div>
+                    <h3>Inspección</h3>
+                    <p>Sensores: 2 proximidad</p>
+                    <p>Actuadores: Rechazo manual</p>
+                </div>
+                
+                <div class="stage-arrow"><i class="fas fa-arrow-right"></i></div>
+                
+                <div class="process-stage" id="stage-4">
+                    <div class="stage-icon"><i class="fas fa-layer-group"></i></div>
+                    <h3>Apilado</h3>
+                    <p>Sensores: 2 presión</p>
+                    <p>Actuadores: 4 servomotores</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="cards-grid" style="margin-top: 2rem;">
+            <div class="card" data-aos="fade-up">
+                <h3><i class="fas fa-tachometer-alt"></i> Capacidad</h3>
+                <p><strong>400 estibas/día</strong></p>
+                <p>200 estibas por línea</p>
+                <p>Tiempo ciclo: 1.2 min/estiba (por línea: 2.4 min/estiba)</p>
+            </div>
+            
+            <div class="card" data-aos="fade-up" data-aos-delay="100">
+                <h3><i class="fas fa-users"></i> Personal</h3>
+                <p><strong>10 trabajadores</strong></p>
+                <p>2 líneas paralelas</p>
+                <p>Área: 100m²</p>
+            </div>
+            
+            <div class="card" data-aos="fade-up" data-aos-delay="200">
+                <h3><i class="fas fa-clock"></i> Disponibilidad</h3>
+                <p><strong>99.5%</strong></p>
+                <p>MTTR: 15 minutos</p>
+                <p>Redundancia activa</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dispositivos y Equipos -->
+    <section class="section" id="dispositivos">
+        <h2 class="section-title" data-aos="fade-up">Dispositivos y Equipos</h2>
+        <p class="section-subtitle" data-aos="fade-up">Componentes del sistema de control industrial</p>
+        
+        <div class="tabs">
+            <button class="tab-btn active" onclick="showTab('plcs')">PLCs</button>
+            <button class="tab-btn" onclick="showTab('hmi')">HMI</button>
+            <button class="tab-btn" onclick="showTab('red')">Red</button>
+            <button class="tab-btn" onclick="showTab('sensores')">Sensores</button>
+            <button class="tab-btn" onclick="showTab('actuadores')">Actuadores</button>
+        </div>
+        
+        <div id="tab-plcs" class="tab-content active">
+            <div class="cards-grid">
+                <div class="card" onclick="showDeviceModal('plc-controllogix')" style="cursor: pointer;">
+                    <h3><i class="fas fa-microchip"></i> ControlLogix 5580</h3>
+                    <p><strong>Cantidad:</strong> 2 unidades</p>
+                    <p><strong>Función:</strong> Control línea producción</p>
+                    <p><strong>Precio:</strong> $34,000,000 COP c/u</p>
+                    <p style="margin-top: 1rem; color: #666;">Click para más detalles →</p>
+                </div>
+                
+                <div class="card" onclick="showDeviceModal('plc-compactlogix')" style="cursor: pointer;">
+                    <h3><i class="fas fa-microchip"></i> CompactLogix 5380</h3>
+                    <p><strong>Cantidad:</strong> 1 unidad</p>
+                    <p><strong>Función:</strong> Coordinación central</p>
+                    <p><strong>Precio:</strong> $24,000,000 COP</p>
+                    <p style="margin-top: 1rem; color: #666;">Click para más detalles →</p>
+                </div>
+            </div>
+        </div>
+        
+        <div id="tab-hmi" class="tab-content">
+            <div class="cards-grid">
+                <div class="card">
+                    <h3><i class="fas fa-desktop"></i> PanelView Plus 7</h3>
+                    <p><strong>Cantidad:</strong> 2 unidades</p>
+                    <p><strong>Pantalla:</strong> 15 pulgadas</p>
+                    <p><strong>Precio:</strong> $14,000,000 COP c/u</p>
+                    <p><strong>Total:</strong> $28,000,000 COP</p>
+                </div>
+            </div>
+        </div>
+        
+        <div id="tab-red" class="tab-content">
+            <div class="cards-grid">
+                <div class="card">
+                    <h3><i class="fas fa-network-wired"></i> Switch Stratix 5700</h3>
+                    <p><strong>Cantidad:</strong> 3 unidades</p>
+                    <p><strong>Función:</strong> Anillo DLR</p>
+                    <p><strong>Precio:</strong> $16,800,000 COP c/u</p>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-network-wired"></i> Switch EN2T</h3>
+                    <p><strong>Cantidad:</strong> 2 unidades</p>
+                    <p><strong>Función:</strong> Campo</p>
+                    <p><strong>Precio:</strong> $3,200,000 COP c/u</p>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-shield-alt"></i> Firewall Stratix 5800</h3>
+                    <p><strong>Cantidad:</strong> 1 unidad</p>
+                    <p><strong>Función:</strong> Seguridad DMZ</p>
+                    <p><strong>Precio:</strong> $30,000,000 COP</p>
+                </div>
+            </div>
+        </div>
+        
+        <div id="tab-sensores" class="tab-content">
+            <div class="cards-grid">
+                <div class="card">
+                    <h3><i class="fas fa-rss"></i> Sensores Proximidad</h3>
+                    <p><strong>Cantidad:</strong> 8 unidades</p>
+                    <p><strong>Tipo:</strong> Inductivos</p>
+                    <p><strong>Precio:</strong> $600,000 COP c/u</p>
+                </div>
+            </div>
+        </div>
+        
+        <div id="tab-actuadores" class="tab-content">
+            <div class="cards-grid">
+                <div class="card">
+                    <h3><i class="fas fa-cog"></i> Motores Paso a Paso con Drivers</h3>
+                    <p><strong>Cantidad:</strong> 8 unidades</p>
+                    <p><strong>Precio:</strong> $2,000,000 COP c/u</p>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-tools"></i> Cilindros Neumáticos</h3>
+                    <p><strong>Cantidad:</strong> 6 unidades</p>
+                    <p><strong>Precio:</strong> $1,200,000 COP c/u</p>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-hammer"></i> Clavadoras Neumáticas</h3>
+                    <p><strong>Cantidad:</strong> 4 unidades</p>
+                    <p><strong>Precio:</strong> $6,000,000 COP c/u</p>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-compress"></i> Prensas Hidráulicas</h3>
+                    <p><strong>Cantidad:</strong> 4 unidades</p>
+                    <p><strong>Capacidad:</strong> 500 kg</p>
+                    <p><strong>Precio:</strong> $3,000,000 COP c/u</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Protocolos y Topología -->
+    <section class="section" id="protocolos">
+        <h2 class="section-title" data-aos="fade-up">Protocolos y Topología</h2>
+        <p class="section-subtitle" data-aos="fade-up">Justificación técnica de Ethernet/IP y topología anillo DLR</p>
+        
+        <div class="cards-grid">
+            <div class="card" data-aos="fade-up">
+                <h3><i class="fas fa-check-circle"></i> Ventajas Ethernet/IP</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin: 0.5rem 0;">✓ Estándar abierto (IEEE 802.3)</li>
+                    <li style="margin: 0.5rem 0;">✓ Compatible TCP/IP estándar</li>
+                    <li style="margin: 0.5rem 0;">✓ Integración IT/OT simplificada</li>
+                    <li style="margin: 0.5rem 0;">✓ Escalable hasta 10Gbps</li>
+                    <li style="margin: 0.5rem 0;">✓ Amplio ecosistema Rockwell</li>
+                    <li style="margin: 0.5rem 0;">✓ Tiempo real con CIP Sync</li>
+                </ul>
+            </div>
+            
+            <div class="card" data-aos="fade-up" data-aos-delay="100">
+                <h3><i class="fas fa-times-circle"></i> Alternativas Descartadas</h3>
+                <p><strong>Profinet:</strong> Requiere Siemens, menos flexible IT</p>
+                <p><strong>Modbus TCP:</strong> Sin servicios avanzados, no tiempo real</p>
+                <p><strong>DeviceNet:</strong> Solo nivel campo, ancho de banda limitado</p>
+            </div>
+            
+            <div class="card" data-aos="fade-up" data-aos-delay="200">
+                <h3><i class="fas fa-network-wired"></i> Topología Anillo DLR</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin: 0.5rem 0;">✓ Redundancia automática (&lt; 3ms)</li>
+                    <li style="margin: 0.5rem 0;">✓ Menos switches que malla</li>
+                    <li style="margin: 0.5rem 0;">✓ Protocolo DLR nativo Rockwell</li>
+                    <li style="margin: 0.5rem 0;">✓ Facilita expansión futura</li>
+                    <li style="margin: 0.5rem 0;">✓ Balance costo-beneficio óptimo</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ciberseguridad -->
+    <section class="section" id="seguridad">
+        <h2 class="section-title" data-aos="fade-up">Ciberseguridad Industrial</h2>
+        <p class="section-subtitle" data-aos="fade-up">Estrategia de segmentación y protección multi-zona</p>
+        
+        <div class="zones-grid">
+            <div class="zone-card zone-0" data-aos="fade-up">
+                <h3><i class="fas fa-exclamation-triangle"></i> Zona 0 - DMZ</h3>
+                <p><strong>Firewall:</strong> Stratix 5800</p>
+                <p><strong>Función:</strong> Filtrado perimetral</p>
+                <p>Inspección profunda de paquetes</p>
+            </div>
+            
+            <div class="zone-card zone-1" data-aos="fade-up" data-aos-delay="100">
+                <h3><i class="fas fa-industry"></i> Zona 1 - Producción</h3>
+                <p><strong>VLAN:</strong> 10</p>
+                <p><strong>Dispositivos:</strong> PLCs, HMI</p>
+                <p>Red controladores críticos</p>
+            </div>
+            
+            <div class="zone-card zone-2" data-aos="fade-up" data-aos-delay="200">
+                <h3><i class="fas fa-server"></i> Zona 2 - Supervisión</h3>
+                <p><strong>VLAN:</strong> 20</p>
+                <p><strong>Dispositivos:</strong> SCADA, BD</p>
+                <p>Servidores y estaciones</p>
+            </div>
+            
+            <div class="zone-card zone-3" data-aos="fade-up" data-aos-delay="300">
+                <h3><i class="fas fa-building"></i> Zona 3 - Administrativa</h3>
+                <p><strong>VLAN:</strong> 30</p>
+                <p><strong>Acceso:</strong> VPN controlado</p>
+                <p>Completamente segregada</p>
+            </div>
+        </div>
+        
+        <div class="cards-grid" style="margin-top: 2rem;">
+            <div class="card" data-aos="fade-up">
+                <h3><i class="fas fa-shield-alt"></i> Medidas Implementadas</h3>
+                <ul>
+                    <li>✓ Firewall industrial con inspección profunda</li>
+                    <li>✓ Autenticación 802.1X en switches</li>
+                    <li>✓ Redundancia DLR en anillo dual</li>
+                    <li>✓ Respaldos automáticos diarios</li>
+                    <li>✓ IDS/IPS industrial</li>
+                    <li>✓ Política de least privilege</li>
+                </ul>
+            </div>
+            
+            <div class="card" data-aos="fade-up" data-aos-delay="100">
+                <h3><i class="fas fa-exclamation-circle"></i> Gestión de Riesgos</h3>
+                <p><strong>Escenario 1:</strong> Pérdida comunicación PLC-SCADA</p>
+                <p>Mitigación: PLCs autónomos, buffers locales</p>
+                <p><strong>Escenario 2:</strong> Ciberataque</p>
+                <p>Mitigación: Firewall, segmentación, backups</p>
+                <p><strong>Escenario 3:</strong> Fallo servidor SCADA</p>
+                <p>Mitigación: Servidor secundario standby</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Análisis Técnico -->
+    <section class="section" id="analisis">
+        <h2 class="section-title" data-aos="fade-up">Análisis Técnico</h2>
+        <p class="section-subtitle" data-aos="fade-up">Métricas de rendimiento y KPIs del sistema</p>
+        
+        <div class="cards-grid">
+            <div class="card" data-aos="fade-up">
+                <h3><i class="fas fa-tachometer-alt"></i> Latencia</h3>
+                <p><strong>Campo → PLC:</strong> &lt; 5ms</p>
+                <p><strong>PLC → SCADA:</strong> &lt; 15ms</p>
+                <p><strong>End-to-End:</strong> &lt; 70ms</p>
+            </div>
+            
+            <div class="card" data-aos="fade-up" data-aos-delay="100">
+                <h3><i class="fas fa-wifi"></i> Ancho de Banda</h3>
+                <p><strong>Utilización Normal:</strong> 150 Mbps</p>
+                <p><strong>Pico Máximo:</strong> 200 Mbps</p>
+                <p><strong>Capacidad:</strong> 1 Gbps</p>
+            </div>  
+            
+            <div class="card" data-aos="fade-up" data-aos-delay="200">
+                <h3><i class="fas fa-chart-line"></i> Calidad de Red</h3>
+                <p><strong>Jitter:</strong> &lt; 2ms</p>
+                <p><strong>Pérdida Paquetes:</strong> &lt; 0.01%</p>
+                <p><strong>Disponibilidad:</strong> 99.5%</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparativa OIT vs In-House -->
+    <section class="section" id="comparativa">
+        <h2 class="section-title" data-aos="fade-up">Comparativa: Proyecto OIT vs In-House</h2>
+        <p class="section-subtitle" data-aos="fade-up">Análisis de costos y componentes entre proyecto subcontratado e implementación interna</p>
+        
+        <div class="comparison-tabs" style="display: flex; gap: 1rem; margin-bottom: 2rem; justify-content: center; flex-wrap: wrap;">
+            <button class="tab-btn active" onclick="showComparisonTab('oit')" id="tab-btn-oit">Proyecto OIT</button>
+            <button class="tab-btn" onclick="showComparisonTab('inhouse')" id="tab-btn-inhouse">Proyecto In-House</button>
+            <button class="tab-btn" onclick="showComparisonTab('comparison')" id="tab-btn-comparison">Comparación</button>
+        </div>
+        
+        <!-- Tab OIT -->
+        <div id="comparison-tab-oit" class="comparison-tab-content active">
+            <div class="cost-table-container" data-aos="fade-up">
+                <h3 style="margin-bottom: 1rem; color: var(--primary);">Elementos Proyecto OIT (Subcontratado)</h3>
+                <table id="cost-table-oit" class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Categoría</th>
+                            <th>Descripción</th>
+                            <th>Cantidad</th>
+                            <th>Precio Unit.</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cost-table-oit-body">
+                        <!-- Will be populated by JavaScript -->
+                    </tbody>
+                </table>
+                <div class="cost-total" id="cost-total-oit">Total: Cargando...</div>
+            </div>
+        </div>
+        
+        <!-- Tab In-House -->
+        <div id="comparison-tab-inhouse" class="comparison-tab-content">
+            <div class="cost-table-container" data-aos="fade-up">
+                <h3 style="margin-bottom: 1rem; color: var(--primary);">Elementos Proyecto In-House (Mínimos Necesarios)</h3>
+                <table id="cost-table-inhouse" class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Categoría</th>
+                            <th>Descripción</th>
+                            <th>Cantidad</th>
+                            <th>Precio Unit.</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cost-table-inhouse-body">
+                        <!-- Will be populated by JavaScript -->
+                    </tbody>
+                </table>
+                <div class="cost-total" id="cost-total-inhouse">Total: Cargando...</div>
+            </div>
+        </div>
+        
+        <!-- Tab Comparación -->
+        <div id="comparison-tab-comparison" class="comparison-tab-content">
+            <div class="cards-grid" style="margin-top: 2rem;">
+                <div class="card" data-aos="fade-up">
+                    <h3><i class="fas fa-dollar-sign"></i> Resumen Financiero</h3>
+                    <p><strong>Proyecto OIT:</strong> <span id="comparison-oit-total">$0 COP</span></p>
+                    <p><strong>Proyecto In-House:</strong> <span id="comparison-inhouse-total">$0 COP</span></p>
+                    <p style="margin-top: 1rem; padding-top: 1rem; border-top: 2px solid var(--primary);"><strong>Ahorro In-House:</strong> <span id="comparison-savings" style="color: var(--success); font-size: 1.2rem;">$0 COP</span></p>
+                    <p><strong>% de Ahorro:</strong> <span id="comparison-percentage" style="color: var(--success); font-size: 1.2rem;">0%</span></p>
+                </div>
+                
+                <div class="card" data-aos="fade-up" data-aos-delay="100">
+                    <h3><i class="fas fa-list-check"></i> Diferencias Clave</h3>
+                    <ul>
+                        <li>✓ <strong>OIT:</strong> Redundancia completa, 2 servidores</li>
+                        <li>✓ <strong>In-House:</strong> 1 servidor combinado SCADA/BD</li>
+                        <li>✓ <strong>OIT:</strong> Firewall industrial Stratix 5800</li>
+                        <li>✓ <strong>In-House:</strong> Firewall software/PC básico</li>
+                        <li>✓ <strong>OIT:</strong> Topología DLR con múltiples switches</li>
+                        <li>✓ <strong>In-House:</strong> Topología estrella simplificada</li>
+                        <li>✓ <strong>OIT:</strong> Capacitación externa incluida</li>
+                        <li>✓ <strong>In-House:</strong> Capacitación interna</li>
+                    </ul>
+                </div>
+                
+                <div class="card" data-aos="fade-up" data-aos-delay="200">
+                    <h3><i class="fas fa-balance-scale"></i> Ventajas y Desventajas</h3>
+                    <p><strong>In-House - Ventajas:</strong></p>
+                    <ul>
+                        <li>✓ Costo inicial significativamente menor</li>
+                        <li>✓ Control total del proyecto</li>
+                        <li>✓ Conocimiento interno acumulado</li>
+                        <li>✓ Sin dependencia de proveedores externos</li>
+                    </ul>
+                    <p style="margin-top: 1rem;"><strong>In-House - Consideraciones:</strong></p>
+                    <ul>
+                        <li>⚠ Requiere personal técnico capacitado</li>
+                        <li>⚠ Mayor tiempo de implementación</li>
+                        <li>⚠ Menor redundancia y disponibilidad</li>
+                        <li>⚠ Soporte técnico interno</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Costos e Inversión -->
+    <section class="section" id="costos">
+        <h2 class="section-title" data-aos="fade-up">Costos e Inversión - Proyecto OIT</h2>
+        <p class="section-subtitle" data-aos="fade-up">Desglose completo de la inversión total (Tasa: 1 USD = 4,000 COP)</p>
+        
+        <div class="filter-container">
+            <label for="category-filter" style="font-weight: 600; margin-right: 1rem;">Filtrar por categoría:</label>
+            <select id="category-filter" class="filter-select" onchange="filterCostTable()">
+                <option value="all">Todas las categorías</option>
+                <option value="CONTROLADORES">Controladores</option>
+                <option value="INTERFAZ HUMANA">Interfaz Humana</option>
+                <option value="EQUIPOS DE RED">Equipos de Red</option>
+                <option value="SERVIDORES Y SOFTWARE">Servidores y Software</option>
+                <option value="SENSORES Y ACTUADORES">Sensores y Actuadores</option>
+                <option value="CABLEADO E INSTALACIÓN">Cableado e Instalación</option>
+                <option value="OTROS">Otros</option>
+            </select>
+        </div>
+        
+        <div class="cost-table-container" data-aos="fade-up">
+            <table id="cost-table">
+                <thead>
+                    <tr>
+                        <th onclick="sortTable(0)">Categoría</th>
+                        <th onclick="sortTable(1)">Descripción</th>
+                        <th onclick="sortTable(2)">Cantidad</th>
+                        <th onclick="sortTable(3)">Precio Unit.</th>
+                        <th onclick="sortTable(4)">Total</th>
+                    </tr>
+                </thead>
+                <tbody id="cost-table-body">
+                    <!-- Table will be populated by JavaScript -->
+                </tbody>
+            </table>
+            <div class="cost-total" id="cost-total">Total: Cargando...</div>
+        </div>
+        
+        <div style="margin-top: 2rem;">
+            <div class="card" data-aos="fade-up" data-aos-delay="100" style="max-width: 600px; margin: 0 auto;">
+                <h3><i class="fas fa-chart-pie"></i> Análisis Costo-Beneficio</h3>
+                <p><strong>ROI Esperado:</strong> 18 meses</p>
+                <p><strong>Ahorro Anual:</strong> $480,000,000 COP</p>
+                <p><strong>Aumento Productividad:</strong> 35%</p>
+                <p><strong>Reducción Desperdicios:</strong> 22%</p>
+                <p><strong>Tiempo Inactividad:</strong> 8% → 2%</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mantenimiento -->
+    <section class="section" id="mantenimiento">
+        <h2 class="section-title" data-aos="fade-up">Plan de Mantenimiento Predictivo</h2>
+        <p class="section-subtitle" data-aos="fade-up">KPIs monitoreados y estrategia de mantenimiento</p>
+        
+        <div class="cards-grid">
+            <div class="card" data-aos="fade-up">
+                <h3><i class="fas fa-calendar-day"></i> Diario</h3>
+                <ul>
+                    <li>Monitoreo automático dashboard SCADA</li>
+                    <li>Revisión alertas en tiempo real</li>
+                    <li>Verificación disponibilidad sistema</li>
+                </ul>
+            </div>
+            
+            <div class="card" data-aos="fade-up" data-aos-delay="100">
+                <h3><i class="fas fa-calendar-week"></i> Semanal</h3>
+                <ul>
+                    <li>Revisión logs switches</li>
+                    <li>Revisión logs firewall</li>
+                    <li>Análisis tráfico de red</li>
+                </ul>
+            </div>
+            
+            <div class="card" data-aos="fade-up" data-aos-delay="200">
+                <h3><i class="fas fa-calendar-alt"></i> Mensual</h3>
+                <ul>
+                    <li>Backup configuraciones</li>
+                    <li>Pruebas de redundancia</li>
+                    <li>Revisión KPIs acumulados</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="card" style="margin-top: 2rem;" data-aos="fade-up">
+            <h3><i class="fas fa-list-check"></i> KPIs Monitoreados</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                <div>
+                    <p><strong>Latencia de Red:</strong> &lt; 20ms ⚠️</p>
+                    <p>Estado: <span style="color: var(--success);">✓ Normal</span></p>
+                </div>
+                <div>
+                    <p><strong>Jitter:</strong> &lt; 5ms ⚠️</p>
+                    <p>Estado: <span style="color: var(--success);">✓ Normal</span></p>
+                </div>
+                <div>
+                    <p><strong>Pérdida Paquetes:</strong> &lt; 0.1% ⚠️</p>
+                    <p>Estado: <span style="color: var(--success);">✓ Normal</span></p>
+                </div>
+                <div>
+                    <p><strong>Utilización BW:</strong> &lt; 70% ⚠️</p>
+                    <p>Estado: <span style="color: var(--success);">✓ Normal</span></p>
+                </div>
+                <div>
+                    <p><strong>Temperatura Switches:</strong> &lt; 60°C ⚠️</p>
+                    <p>Estado: <span style="color: var(--success);">✓ Normal</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Roadmap Futuro -->
+    <section class="section" id="roadmap">
+        <h2 class="section-title" data-aos="fade-up">Roadmap Futuro</h2>
+        <p class="section-subtitle" data-aos="fade-up">Evolución y escalabilidad del sistema</p>
+        
+        <div class="timeline">
+            <div class="timeline-item" data-aos="fade-right">
+                <h3><i class="fas fa-rocket"></i> Fase 1 - Actual (Año 1)</h3>
+                <p><strong>Implementación Base:</strong></p>
+                <ul>
+                    <li>2 líneas de producción automatizadas</li>
+                    <li>Red industrial con redundancia DLR</li>
+                    <li>Sistema SCADA FactoryTalk</li>
+                    <li>Dashboard web gerencial</li>
+                </ul>
+            </div>
+            
+            <div class="timeline-item" data-aos="fade-right" data-aos-delay="100">
+                <h3><i class="fas fa-chart-line"></i> Fase 2 - Año 2</h3>
+                <p><strong>Expansión y Optimización:</strong></p>
+                <ul>
+                    <li>Línea 3 de producción (diseño modular)</li>
+                    <li>MES (Manufacturing Execution System)</li>
+                    <li>Gemelo Digital para simulación</li>
+                    <li>AI/ML para detección de defectos</li>
+                    <li>Dashboard OEE en tiempo real</li>
+                </ul>
+            </div>
+            
+            <div class="timeline-item" data-aos="fade-right" data-aos-delay="200">
+                <h3><i class="fas fa-globe"></i> Fase 3 - Años 3-5</h3>
+                <p><strong>Tecnologías Emergentes:</strong></p>
+                <ul>
+                    <li>AGVs (vehículos guiados autónomos)</li>
+                    <li>5G Privado para movilidad</li>
+                    <li>Blockchain para trazabilidad completa</li>
+                    <li>Realidad Aumentada (HoloLens) para mantenimiento</li>
+                    <li>Edge Computing avanzado</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="cards-grid" style="margin-top: 2rem;">
+            <div class="card" data-aos="fade-up">
+                <h3><i class="fas fa-cloud"></i> IIoT</h3>
+                <p><strong>Beneficios:</strong> Monitoreo predictivo, análisis datos tiempo real</p>
+                <p><strong>Riesgos:</strong> Superficie de ataque ampliada</p>
+                <p><strong>Propuesta:</strong> Gateway IIoT en DMZ</p>
+            </div>
+            
+            <div class="card" data-aos="fade-up" data-aos-delay="100">
+                <h3><i class="fas fa-microchip"></i> Edge Computing</h3>
+                <p><strong>Beneficios:</strong> Procesamiento local, reducción latencia</p>
+                <p><strong>Implementación:</strong> Edge device para visión artificial</p>
+            </div>
+            
+            <div class="card" data-aos="fade-up" data-aos-delay="200">
+                <h3><i class="fas fa-satellite"></i> 5G Industrial</h3>
+                <p><strong>Beneficios:</strong> AGVs inalámbricos, movilidad HMI</p>
+                <p><strong>Evaluación:</strong> Fase 2, no prioritario ahora</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h3 style="margin-bottom: 1rem;">Proyecto Académico</h3>
+            <p><strong>Jhon Bohorquez</strong></p>
+            <p><strong>Ingeniería en Mecatrónica</strong> </p>
+            <p><strong>ESCUELA TECNICA INSTITUTO TECNICO CENTRAL</strong></p>
+            <p style="margin-top: 2rem; opacity: 0.8;">Diseño de Red Industrial para Producción Automatizada de Estibas</p>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div id="device-modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+            <div id="modal-body">
+                <!-- Modal content will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        // Cost Data (en Pesos Colombianos - COP) - Tasa: 1 USD = 4,000 COP
+        // Ajustado para proyecto máximo 400 millones COP
+        const costData = [
+            {category: "CONTROLADORES", desc: "PLC ControlLogix 5580", qty: 2, unit: 34000000, total: 68000000},
+            {category: "CONTROLADORES", desc: "PLC CompactLogix 5380", qty: 1, unit: 24000000, total: 24000000},
+            {category: "CONTROLADORES", desc: "Módulos E/S remotos Flex I/O", qty: 6, unit: 4800000, total: 28800000},
+            {category: "INTERFAZ HUMANA", desc: "HMI PanelView Plus 7 (15\")", qty: 2, unit: 14000000, total: 28000000},
+            {category: "EQUIPOS DE RED", desc: "Switch Stratix 5700", qty: 3, unit: 16800000, total: 50400000},
+            {category: "EQUIPOS DE RED", desc: "Switch EN2T", qty: 2, unit: 3200000, total: 6400000},
+            {category: "EQUIPOS DE RED", desc: "Firewall Stratix 5800", qty: 1, unit: 30000000, total: 30000000},
+            {category: "EQUIPOS DE RED", desc: "Router industrial VPN", qty: 1, unit: 11200000, total: 11200000},
+            {category: "SERVIDORES Y SOFTWARE", desc: "Servidor SCADA Dell PowerEdge R450", qty: 1, unit: 22000000, total: 22000000},
+            {category: "SERVIDORES Y SOFTWARE", desc: "Servidor Base de Datos Dell PowerEdge R450", qty: 1, unit: 22000000, total: 22000000},
+            {category: "SERVIDORES Y SOFTWARE", desc: "Licencias PLC Studio 5000", qty: 3, unit: 10000000, total: 30000000},
+            {category: "SENSORES Y ACTUADORES", desc: "Sensores proximidad inductivos", qty: 8, unit: 600000, total: 4800000},
+            {category: "SENSORES Y ACTUADORES", desc: "Cilindros neumáticos", qty: 6, unit: 1200000, total: 7200000},
+            {category: "SENSORES Y ACTUADORES", desc: "Motores paso a paso con drivers", qty: 8, unit: 2000000, total: 16000000},
+            {category: "SENSORES Y ACTUADORES", desc: "Clavadoras neumáticas automáticas", qty: 4, unit: 6000000, total: 24000000},
+            {category: "SENSORES Y ACTUADORES", desc: "Prensas hidráulicas 500 kg", qty: 4, unit: 3000000, total: 12000000},
+            {category: "CABLEADO E INSTALACIÓN", desc: "Cable Cat6A (rollo 305m)", qty: 3, unit: 1800000, total: 5400000},
+            {category: "CABLEADO E INSTALACIÓN", desc: "Cable Cat5e (rollo 305m)", qty: 4, unit: 720000, total: 2880000},
+            {category: "CABLEADO E INSTALACIÓN", desc: "Canaleta y accesorios", qty: 1, unit: 10000000, total: 10000000},
+            {category: "CABLEADO E INSTALACIÓN", desc: "Gabinetes industriales", qty: 3, unit: 4800000, total: 14400000},
+            {category: "CABLEADO E INSTALACIÓN", desc: "Mano de obra instalación (3 sem)", qty: 1, unit: 48000000, total: 48000000},
+            {category: "CABLEADO E INSTALACIÓN", desc: "Puesta en marcha", qty: 1, unit: 32000000, total: 32000000},
+            {category: "OTROS", desc: "UPS industrial 3kVA", qty: 2, unit: 10000000, total: 20000000},
+            {category: "OTROS", desc: "Repuestos iniciales", qty: 1, unit: 12000000, total: 12000000},
+            {category: "OTROS", desc: "Capacitación personal (40 horas)", qty: 1, unit: 16000000, total: 16000000}
+        ];
+
+        // In-House Project Data (Mínimos necesarios)
+        const costDataInHouse = [
+            {category: "CONTROLADORES", desc: "PLC CompactLogix 5380", qty: 2, unit: 24000000, total: 48000000},
+            {category: "CONTROLADORES", desc: "Módulos E/S remotos Flex I/O", qty: 3, unit: 4800000, total: 14400000},
+            {category: "INTERFAZ HUMANA", desc: "HMI PanelView Plus 7 (12\")", qty: 1, unit: 12000000, total: 12000000},
+            {category: "EQUIPOS DE RED", desc: "Switch Ethernet básico 24 puertos", qty: 2, unit: 4000000, total: 8000000},
+            {category: "EQUIPOS DE RED", desc: "Firewall software/PC (pfSense)", qty: 1, unit: 5000000, total: 5000000},
+            {category: "SERVIDORES Y SOFTWARE", desc: "Servidor SCADA/BD combinado (PC Workstation)", qty: 1, unit: 15000000, total: 15000000},
+            {category: "SERVIDORES Y SOFTWARE", desc: "SCADA Ignition Edge (o Codesys Runtime)", qty: 1, unit: 8000000, total: 8000000},
+            {category: "SERVIDORES Y SOFTWARE", desc: "Licencias PLC Studio 5000", qty: 2, unit: 10000000, total: 20000000},
+            {category: "SENSORES Y ACTUADORES", desc: "Sensores proximidad inductivos", qty: 8, unit: 600000, total: 4800000},
+            {category: "SENSORES Y ACTUADORES", desc: "Cilindros neumáticos", qty: 6, unit: 1200000, total: 7200000},
+            {category: "SENSORES Y ACTUADORES", desc: "Motores paso a paso con drivers", qty: 8, unit: 2000000, total: 16000000},
+            {category: "SENSORES Y ACTUADORES", desc: "Clavadoras neumáticas automáticas", qty: 4, unit: 6000000, total: 24000000},
+            {category: "SENSORES Y ACTUADORES", desc: "Prensas hidráulicas 500 kg", qty: 4, unit: 3000000, total: 12000000},
+            {category: "CABLEADO E INSTALACIÓN", desc: "Cable Cat5e (rollo 305m)", qty: 2, unit: 720000, total: 1440000},
+            {category: "CABLEADO E INSTALACIÓN", desc: "Canaleta y accesorios", qty: 1, unit: 6000000, total: 6000000},
+            {category: "CABLEADO E INSTALACIÓN", desc: "Gabinetes industriales", qty: 2, unit: 4000000, total: 8000000},
+            {category: "CABLEADO E INSTALACIÓN", desc: "Mano de obra instalación (interna, 4 sem)", qty: 1, unit: 20000000, total: 20000000},
+            {category: "CABLEADO E INSTALACIÓN", desc: "Puesta en marcha (interna)", qty: 1, unit: 10000000, total: 10000000},
+            {category: "OTROS", desc: "UPS industrial 2kVA", qty: 1, unit: 8000000, total: 8000000},
+            {category: "OTROS", desc: "Repuestos iniciales", qty: 1, unit: 8000000, total: 8000000}
+        ];
+
+        // Comparison Tab Function
+        function showComparisonTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.comparison-tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.comparison-tabs .tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(`comparison-tab-${tabName}`).classList.add('active');
+            document.getElementById(`tab-btn-${tabName}`).classList.add('active');
+            
+            // Update comparison tab if needed
+            if (tabName === 'comparison') {
+                updateComparisonSummary();
+            }
+        }
+        
+        // Populate In-House Table
+        function populateInHouseTable() {
+            const tbody = document.getElementById('cost-table-inhouse-body');
+            tbody.innerHTML = '';
+            let grandTotal = 0;
+            
+            costDataInHouse.forEach(item => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${item.category}</td>
+                    <td>${item.desc}</td>
+                    <td>${item.qty}</td>
+                    <td>$${item.unit.toLocaleString('es-CO')} COP</td>
+                    <td>$${item.total.toLocaleString('es-CO')} COP</td>
+                `;
+                tbody.appendChild(row);
+                grandTotal += item.total;
+            });
+            
+            // Add subtotal and contingency
+            const subtotalRow = document.createElement('tr');
+            subtotalRow.style.fontWeight = 'bold';
+            subtotalRow.innerHTML = `
+                <td colspan="4">SUBTOTAL</td>
+                <td>$${grandTotal.toLocaleString('es-CO')} COP</td>
+            `;
+            tbody.appendChild(subtotalRow);
+            
+            const contingency = grandTotal * 0.1;
+            const contingencyRow = document.createElement('tr');
+            contingencyRow.style.fontWeight = 'bold';
+            contingencyRow.innerHTML = `
+                <td colspan="4">Contingencia (10%)</td>
+                <td>$${Math.round(contingency).toLocaleString('es-CO')} COP</td>
+            `;
+            tbody.appendChild(contingencyRow);
+            
+            const finalTotal = grandTotal + contingency;
+            const totalRow = document.createElement('tr');
+            totalRow.style.fontWeight = 'bold';
+            totalRow.style.fontSize = '1.1rem';
+            totalRow.style.color = 'var(--primary)';
+            totalRow.innerHTML = `
+                <td colspan="4">TOTAL GENERAL</td>
+                <td>$${Math.round(finalTotal).toLocaleString('es-CO')} COP</td>
+            `;
+            tbody.appendChild(totalRow);
+            
+            document.getElementById('cost-total-inhouse').textContent = `Total: $${Math.round(finalTotal).toLocaleString('es-CO')} COP`;
+        }
+        
+        // Populate OIT Table in comparison section
+        function populateOITComparisonTable() {
+            const tbody = document.getElementById('cost-table-oit-body');
+            tbody.innerHTML = '';
+            let grandTotal = 0;
+            
+            costData.forEach(item => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${item.category}</td>
+                    <td>${item.desc}</td>
+                    <td>${item.qty}</td>
+                    <td>$${item.unit.toLocaleString('es-CO')} COP</td>
+                    <td>$${item.total.toLocaleString('es-CO')} COP</td>
+                `;
+                tbody.appendChild(row);
+                grandTotal += item.total;
+            });
+            
+            // Add subtotal and contingency
+            const subtotalRow = document.createElement('tr');
+            subtotalRow.style.fontWeight = 'bold';
+            subtotalRow.innerHTML = `
+                <td colspan="4">SUBTOTAL</td>
+                <td>$${grandTotal.toLocaleString('es-CO')} COP</td>
+            `;
+            tbody.appendChild(subtotalRow);
+            
+            const contingency = grandTotal * 0.1;
+            const contingencyRow = document.createElement('tr');
+            contingencyRow.style.fontWeight = 'bold';
+            contingencyRow.innerHTML = `
+                <td colspan="4">Contingencia (10%)</td>
+                <td>$${Math.round(contingency).toLocaleString('es-CO')} COP</td>
+            `;
+            tbody.appendChild(contingencyRow);
+            
+            const finalTotal = grandTotal + contingency;
+            const totalRow = document.createElement('tr');
+            totalRow.style.fontWeight = 'bold';
+            totalRow.style.fontSize = '1.1rem';
+            totalRow.style.color = 'var(--primary)';
+            totalRow.innerHTML = `
+                <td colspan="4">TOTAL GENERAL</td>
+                <td>$${Math.round(finalTotal).toLocaleString('es-CO')} COP</td>
+            `;
+            tbody.appendChild(totalRow);
+            
+            document.getElementById('cost-total-oit').textContent = `Total: $${Math.round(finalTotal).toLocaleString('es-CO')} COP`;
+        }
+        
+        // Update Comparison Summary
+        function updateComparisonSummary() {
+            let oitTotal = 0;
+            costData.forEach(item => oitTotal += item.total);
+            oitTotal = oitTotal * 1.1; // Add 10% contingency
+            
+            let inhouseTotal = 0;
+            costDataInHouse.forEach(item => inhouseTotal += item.total);
+            inhouseTotal = inhouseTotal * 1.1; // Add 10% contingency
+            
+            const savings = oitTotal - inhouseTotal;
+            const percentage = ((savings / oitTotal) * 100).toFixed(1);
+            
+            document.getElementById('comparison-oit-total').textContent = `$${Math.round(oitTotal).toLocaleString('es-CO')} COP`;
+            document.getElementById('comparison-inhouse-total').textContent = `$${Math.round(inhouseTotal).toLocaleString('es-CO')} COP`;
+            document.getElementById('comparison-savings').textContent = `$${Math.round(savings).toLocaleString('es-CO')} COP`;
+            document.getElementById('comparison-percentage').textContent = `${percentage}%`;
+        }
+
+        // Populate Cost Table
+        function populateCostTable(filterCategory = 'all') {
+            const tbody = document.getElementById('cost-table-body');
+            tbody.innerHTML = '';
+            let grandTotal = 0;
+            
+            const filtered = filterCategory === 'all' 
+                ? costData 
+                : costData.filter(item => item.category === filterCategory);
+            
+            filtered.forEach(item => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${item.category}</td>
+                    <td>${item.desc}</td>
+                    <td>${item.qty}</td>
+                    <td>$${item.unit.toLocaleString('es-CO')} COP</td>
+                    <td>$${item.total.toLocaleString('es-CO')} COP</td>
+                `;
+                tbody.appendChild(row);
+                grandTotal += item.total;
+            });
+            
+            // Add contingency and total if showing all
+            if (filterCategory === 'all') {
+                const subtotalRow = document.createElement('tr');
+                subtotalRow.style.fontWeight = 'bold';
+                subtotalRow.innerHTML = `
+                    <td colspan="4">SUBTOTAL</td>
+                    <td>$${grandTotal.toLocaleString('es-CO')} COP</td>
+                `;
+                tbody.appendChild(subtotalRow);
+                
+                const contingency = grandTotal * 0.1;
+                const contingencyRow = document.createElement('tr');
+                contingencyRow.style.fontWeight = 'bold';
+                contingencyRow.innerHTML = `
+                    <td colspan="4">Contingencia (10%)</td>
+                    <td>$${Math.round(contingency).toLocaleString('es-CO')} COP</td>
+                `;
+                tbody.appendChild(contingencyRow);
+                
+                const finalTotal = grandTotal + contingency;
+                const totalRow = document.createElement('tr');
+                totalRow.style.fontWeight = 'bold';
+                totalRow.style.fontSize = '1.2rem';
+                totalRow.style.backgroundColor = '#E3F2FD';
+                totalRow.innerHTML = `
+                    <td colspan="4">INVERSIÓN TOTAL</td>
+                    <td>$${Math.round(finalTotal).toLocaleString('es-CO')} COP</td>
+                `;
+                tbody.appendChild(totalRow);
+                document.getElementById('cost-total').textContent = `Total: $${Math.round(finalTotal).toLocaleString('es-CO')} COP`;
+            } else {
+                document.getElementById('cost-total').textContent = `Subtotal Filtrado: $${grandTotal.toLocaleString('es-CO')} COP`;
+            }
+        }
+
+        function filterCostTable() {
+            const filter = document.getElementById('category-filter').value;
+            populateCostTable(filter);
+        }
+
+        function sortTable(col) {
+            // Simple sorting implementation
+            console.log('Sorting by column:', col);
+        }
+
+        // Animated Counters
+        function animateCounters() {
+            const productionCounter = new CountUp('stat-production', 0, 400, 0, 2);
+            const roiCounter = new CountUp('stat-roi', 0, 18, 0, 2);
+            
+            productionCounter.start();
+            roiCounter.start();
+        }
+
+        // Process Simulation
+        let processInterval = null;
+        let currentStage = 0;
+        let productionCount = 87;
+
+        function toggleProcessSimulation() {
+            const btn = document.getElementById('process-btn');
+            
+            if (processInterval) {
+                clearInterval(processInterval);
+                processInterval = null;
+                btn.innerHTML = '<i class="fas fa-play"></i> Iniciar Simulación';
+                document.querySelectorAll('.process-stage').forEach(stage => stage.classList.remove('active'));
+            } else {
+                btn.innerHTML = '<i class="fas fa-pause"></i> Pausar Simulación';
+                processInterval = setInterval(() => {
+                    document.querySelectorAll('.process-stage').forEach(stage => stage.classList.remove('active'));
+                    document.getElementById(`stage-${currentStage + 1}`).classList.add('active');
+                    currentStage = (currentStage + 1) % 4;
+                    
+                    if (currentStage === 0) {
+                        productionCount = Math.min(productionCount + 1, 400);
+                        document.getElementById('production-counter').textContent = productionCount;
+                    }
+                }, 2500);
+            }
+        }
+
+        // Tab Switching
+        function showTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            
+            document.getElementById(`tab-${tabName}`).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+
+        // Device Modal
+        const deviceInfo = {
+            'plc-controllogix': {
+                name: 'PLC ControlLogix 5580',
+                specs: 'Procesador: 5580, Ethernet/IP, 32GB memoria, Rack L75',
+                function: 'Control principal de línea de producción',
+                price: '$34,000,000 COP',
+                qty: 2
+            },
+            'plc-compactlogix': {
+                name: 'PLC CompactLogix 5380',
+                specs: 'Procesador: 5380, Ethernet/IP, 16GB memoria',
+                function: 'Coordinación central entre líneas',
+                price: '$24,000,000 COP',
+                qty: 1
+            },
+            'scada-server': {
+                name: 'Servidor SCADA',
+                specs: 'Dell PowerEdge R450, FactoryTalk View SE',
+                function: 'Supervisión y control centralizado',
+                price: '$22,000,000 COP',
+                qty: 1
+            }
+        };
+
+        function showDeviceModal(deviceId) {
+            const modal = document.getElementById('device-modal');
+            const body = document.getElementById('modal-body');
+            
+            const info = deviceInfo[deviceId] || {
+                name: 'Dispositivo Industrial',
+                specs: 'Especificaciones técnicas detalladas',
+                function: 'Función en el sistema',
+                price: 'Consultar',
+                qty: 1
+            };
+            
+            body.innerHTML = `
+                <h2>${info.name}</h2>
+                <p><strong>Especificaciones:</strong></p>
+                <p>${info.specs}</p>
+                <p><strong>Función:</strong></p>
+                <p>${info.function}</p>
+                <p><strong>Precio Unitario:</strong> ${info.price}</p>
+                <p><strong>Cantidad:</strong> ${info.qty}</p>
+            `;
+            
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('device-modal').classList.remove('active');
+        }
+
+        // Close modal on outside click
+        window.onclick = function(event) {
+            const modal = document.getElementById('device-modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Charts
+        // Charts removed - using static cards with data instead
+
+        // Download PDF (simulated)
+        function downloadPDF() {
+            alert('Función de descarga PDF simulada. En producción, esto generaría un PDF del dashboard.');
+        }
+
+        // Initialize on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            populateCostTable();
+            populateInHouseTable();
+            populateOITComparisonTable();
+            updateComparisonSummary();
+            animateCounters();
+            
+            // Charts initialization removed - using static data cards
+            
+            // Smooth scroll for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+    
+</body>
+</html>
